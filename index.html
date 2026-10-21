@@ -1,45 +1,196 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>給韶霈 💕</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    @keyframes pulse-slow {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-    .animate-pulse-slow {
-      animation: pulse-slow 2.5s infinite ease-in-out;
-    }
-    @keyframes float {
-      0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.6; }
-      80% { opacity: 0.6; }
-      100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
-    }
-    .floating-heart {
-      position: absolute;
-      bottom: -50px;
-      animation: float 10s linear infinite;
-      pointer-events: none;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給韶霈 💕</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffd6e7, #fff0f5);
+    font-family: "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 20px;
+  }
+  /* 卡片放大，減少周圍空白 */
+  .card {
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 800px;
+    min-height: 520px;
+    padding: 40px 30px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(255, 107, 158, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  /* 導覽列選單 */
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #ffe3ec;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+  }
+  .nav button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .nav button.active {
+    color: #ff4f87;
+    background-color: #ffe3ec;
+  }
+  /* 愛心圖示動畫 */
+  .heart-icon {
+    font-size: 75px;
+    margin-bottom: 15px;
+    animation: beat 1.2s infinite ease-in-out;
+  }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  h1, h2 {
+    color: #ff4f87;
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  p {
+    color: #555;
+    font-size: 22px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+  /* 主按鈕 */
+  .btn {
+    background: linear-gradient(135deg, #ff6b9e, #ff4f87);
+    color: white;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 79, 135, 0.3);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 79, 135, 0.4);
+  }
+  /* 分頁隱藏控制 */
+  .page {
+    display: none;
+  }
+  .page.active {
+    display: block;
+  }
+  .footer-text {
+    color: #ffa1c5;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+</style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-rose-50 to-purple-100 min-h-screen font-sans relative overflow-x-hidden flex flex-col justify-between">
+<body>
 
-  <!-- 背景飄浮愛心特效 -->
-  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+<div class="card">
+  <!-- 頂部導覽列 -->
+  <div class="nav">
+    <button id="nav-home" class="active" onclick="showPage('home')">🏠 首頁</button>
+    <button id="nav-whisper" onclick="showPage('whisper')">💌 悄悄話</button>
+    <button id="nav-memories" onclick="showPage('memories')">📸 回憶牆</button>
+    <button id="nav-wishes" onclick="showPage('wishes')">🎁 願望清單</button>
+  </div>
 
-  <!-- 主要卡片容器（加大尺寸） -->
-  <div class="relative z-10 my-auto py-8 px-4 flex justify-center items-center">
-    <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-12 w-full max-w-3xl min-h-[500px] flex flex-col justify-between border border-pink-100/50 transition-all duration-300 hover:shadow-pink-200/50">
-      
-      <!-- 頂部導覽列 -->
-      <nav class="flex justify-around items-center border-b-2 border-pink-100 pb-4 mb-6">
-        <button onclick="switchTab('home')" id="tab-home" class="nav-tab text-base md:text-xl font-bold px-3 md:px-6 py-2 rounded-full transition-all duration-300 text-rose-500 bg-pink-100/80 shadow-sm">
-          <i class="fa-solid fa-house mr-1 md:mr-2"></i>首頁
-        </button>
-        <button onclick="switchTab('whisper')" id="tab-whisper" class="nav-
+  <!-- 內容區域 -->
+  <div class="content">
+    <!-- 1. 首頁 -->
+    <div id="page-home" class="page active">
+      <div class="heart-icon">💗</div>
+      <h1>給韶霈</h1>
+      <p>
+        如果你看到這個頁面，<br>
+        表示妳已經開始想我了 🥳
+      </p>
+      <button class="btn" onclick="showPage('whisper')">看第一條悄悄話 ➔</button>
+    </div>
+
+    <!-- 2. 悄悄話 -->
+    <div id="page-whisper" class="page">
+      <div class="heart-icon">💌</div>
+      <h1>悄悄話</h1>
+      <p>
+        其實我也一直在想妳 💕<br>
+        無論今天過得怎麼樣，<br>
+        記得都有我在這裡陪著妳！
+      </p>
+      <button class="btn" onclick="showPage('memories')">去看我們的回憶 ➔</button>
+    </div>
+
+    <!-- 3. 回憶牆 -->
+    <div id="page-memories" class="page">
+      <div class="heart-icon">📸</div>
+      <h1>我們的回憶</h1>
+      <p>
+        每一刻跟妳在一起的時間，<br>
+        都是最珍貴的收藏！✨
+      </p>
+      <button class="btn" onclick="showPage('wishes')">前往願望清單 ➔</button>
+    </div>
+
+    <!-- 4. 願望清單 -->
+    <div id="page-wishes" class="page">
+      <div class="heart-icon">🎁</div>
+      <h1>願望清單</h1>
+      <p>
+        想跟妳一起去的每個地方，<br>
+        我們一個一個去實現！🎒
+      </p>
+      <button class="btn" onclick="showPage('home')">⬅ 回到首頁</button>
+    </div>
+  </div>
+
+  <div class="footer-text">
+    Made with ❤️ for Shao Pei
+  </div>
+</div>
+
+<script>
+  function showPage(pageName) {
+    // 隱藏所有分頁
+    var pages = document.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) {
+      pages[i].classList.remove('active');
+    }
+    
+    // 取消所有導覽列按鈕高亮
+    var navBtns = document.querySelectorAll('.nav button');
+    for (var j = 0; j < navBtns.length; j++) {
+      navBtns[j].classList.remove('active');
+    }
+
+    // 顯示目標頁面與高亮選單
+    document.getElementById('page-' + pageName).classList.add('active');
+    document.getElementById('nav-' + pageName).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
