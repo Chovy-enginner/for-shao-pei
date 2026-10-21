@@ -3,24 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>給經典 💕</title>
+<title>給韶霈 💕 - 首頁</title>
 <style>
 body{
   margin:0;
-  height:100vh;
+  min-height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   background:linear-gradient(135deg,#ffd6e7,#fff0f5);
   font-family:"Microsoft JhengHei",sans-serif;
+  padding:20px 0;
+  box-sizing:border-box;
 }
 .card{
   background:white;
   width:350px;
-  padding:40px;
+  padding:30px 40px;
   border-radius:25px;
   text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+.nav{
+  display:flex;
+  justify-content:space-around;
+  margin-bottom:20px;
+  border-bottom:2px solid #ffe3ec;
+  padding-bottom:10px;
+}
+.nav a{
+  text-decoration:none;
+  color:#888;
+  font-size:14px;
+  font-weight:bold;
+}
+.nav a.active{
+  color:#ff4f87;
+  border-bottom:2px solid #ff4f87;
+  padding-bottom:2px;
 }
 .heart{
   font-size:60px;
@@ -48,35 +68,32 @@ button{
   cursor:pointer;
   font-size:16px;
   margin-top:20px;
+  transition:0.3s;
 }
 button:hover{
   background:#ff4f87;
-}
-#message{
-  margin-top:20px;
-  color:#ff4f87;
-  font-weight:bold;
 }
 </style>
 </head>
 <body>
 <div class="card">
-<div class="heart">💗</div>
-<h1>給經典</h1>
-<p>
-如果你看到這個頁面，<br>
-表示妳已經開始想我了 🥳
-</p>
-<button onclick="showMessage()">
-點我一下
-</button>
-<div id="message"></div>
+  <!-- 頂部選單 -->
+  <div class="nav">
+    <a href="index.html" class="active">首頁</a>
+    <a href="page2.html">悄悄話</a>
+    <a href="page3.html">回憶牆</a>
+    <a href="page4.html">願望清單</a>
+  </div>
+
+  <div class="heart">💗</div>
+  <h1>給韶霈</h1>
+  <p>
+  如果你看到這個頁面，<br>
+  表示妳已經開始想我了 🥳
+  </p>
+  <button onclick="location.href='page2.html'">
+    前往悄悄話 ➔
+  </button>
 </div>
-<script>
-function showMessage(){
-  document.getElementById("message").innerHTML =
-  "其實我也一直在想妳 💕";
-}
-</script>
 </body>
 </html>
