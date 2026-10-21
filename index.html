@@ -1,1 +1,82 @@
-test
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給經典 💕</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffd6e7,#fff0f5);
+  font-family:"Microsoft JhengHei",sans-serif;
+}
+.card{
+  background:white;
+  width:350px;
+  padding:40px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+.heart{
+  font-size:60px;
+  animation:beat 1s infinite;
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+h1{
+  color:#ff4f87;
+  margin-bottom:15px;
+}
+p{
+  color:#666;
+  line-height:1.8;
+}
+button{
+  background:#ff6b9e;
+  color:white;
+  border:none;
+  padding:12px 24px;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:16px;
+  margin-top:20px;
+}
+button:hover{
+  background:#ff4f87;
+}
+#message{
+  margin-top:20px;
+  color:#ff4f87;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="heart">💗</div>
+<h1>給經典</h1>
+<p>
+如果你看到這個頁面，<br>
+表示妳已經開始想我了 🥳
+</p>
+<button onclick="showMessage()">
+點我一下
+</button>
+<div id="message"></div>
+</div>
+<script>
+function showMessage(){
+  document.getElementById("message").innerHTML =
+  "其實我也一直在想妳 💕";
+}
+</script>
+</body>
+</html>
