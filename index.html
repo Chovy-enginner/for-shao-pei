@@ -1,105 +1,45 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>給韶霈 💕</title>
-<style>
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ffd6e7,#fff0f5);
-  font-family:"Microsoft JhengHei",sans-serif;
-  padding:20px;
-  box-sizing:border-box;
-}
-/* 放大卡片尺寸 */
-.card{
-  background:white;
-  width:100%;
-  max-width:700px;
-  padding:50px 40px;
-  border-radius:30px;
-  text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,0.12);
-  box-sizing:border-box;
-}
-/* 放大導覽列文字與間距 */
-.nav{
-  display:flex;
-  justify-content:space-around;
-  margin-bottom:35px;
-  border-bottom:2px solid #ffe3ec;
-  padding-bottom:15px;
-}
-.nav a{
-  text-decoration:none;
-  color:#888;
-  font-size:18px;
-  font-weight:bold;
-  padding:5px 10px;
-}
-.nav a.active{
-  color:#ff4f87;
-  border-bottom:3px solid #ff4f87;
-}
-.heart{
-  font-size:80px;
-  animation:beat 1s infinite;
-  margin-bottom:15px;
-}
-@keyframes beat{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.15);}
-  100%{transform:scale(1);}
-}
-h1{
-  color:#ff4f87;
-  font-size:36px;
-  margin-bottom:20px;
-}
-p{
-  color:#666;
-  font-size:20px;
-  line-height:1.9;
-  margin-bottom:30px;
-}
-.btn{
-  display:inline-block;
-  background:#ff6b9e;
-  color:white;
-  text-decoration:none;
-  padding:16px 36px;
-  border-radius:40px;
-  font-size:20px;
-  font-weight:bold;
-  transition:0.3s;
-}
-.btn:hover{
-  background:#ff4f87;
-  transform:translateY(-2px);
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>給韶霈 💕</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 2.5s infinite ease-in-out;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(-800px) rotate(360deg); opacity: 0; }
+    }
+    .floating-heart {
+      position: absolute;
+      bottom: -50px;
+      animation: float 10s linear infinite;
+      pointer-events: none;
+    }
+  </style>
 </head>
-<body>
-<div class="card">
-  <div class="nav">
-    <a href="index.html" class="active">首頁</a>
-    <a href="page2.html">悄悄話</a>
-    <a href="page3.html">回憶牆</a>
-    <a href="page4.html">願望清單</a>
-  </div>
+<body class="bg-gradient-to-br from-pink-100 via-rose-50 to-purple-100 min-h-screen font-sans relative overflow-x-hidden flex flex-col justify-between">
 
-  <div class="heart">💗</div>
-  <h1>給韶霈</h1>
-  <p>
-  如果你看到這個頁面，<br>
-  表示妳已經開始想我了 🥳
-  </p>
-  <a href="page2.html" class="btn">看第一條悄悄話 ➔</a>
-</div>
-</body>
-</html>
+  <!-- 背景飄浮愛心特效 -->
+  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+  <!-- 主要卡片容器（加大尺寸） -->
+  <div class="relative z-10 my-auto py-8 px-4 flex justify-center items-center">
+    <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-12 w-full max-w-3xl min-h-[500px] flex flex-col justify-between border border-pink-100/50 transition-all duration-300 hover:shadow-pink-200/50">
+      
+      <!-- 頂部導覽列 -->
+      <nav class="flex justify-around items-center border-b-2 border-pink-100 pb-4 mb-6">
+        <button onclick="switchTab('home')" id="tab-home" class="nav-tab text-base md:text-xl font-bold px-3 md:px-6 py-2 rounded-full transition-all duration-300 text-rose-500 bg-pink-100/80 shadow-sm">
+          <i class="fa-solid fa-house mr-1 md:mr-2"></i>首頁
+        </button>
+        <button onclick="switchTab('whisper')" id="tab-whisper" class="nav-
