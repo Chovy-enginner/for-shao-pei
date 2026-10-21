@@ -22,7 +22,7 @@
     overflow-x: hidden;
   }
 
-  /* 飄浮愛心背景容器 */
+  /* 飄浮愛心背景 */
   #heart-bg {
     position: fixed;
     top: 0;
@@ -34,7 +34,6 @@
     overflow: hidden;
   }
 
-  /* 飄浮愛心動畫 */
   .floating-heart {
     position: absolute;
     bottom: -50px;
@@ -48,12 +47,8 @@
       transform: translateY(0) rotate(0deg) scale(0.8);
       opacity: 0;
     }
-    15% {
-      opacity: 0.7;
-    }
-    85% {
-      opacity: 0.7;
-    }
+    15% { opacity: 0.7; }
+    85% { opacity: 0.7; }
     100% {
       transform: translateY(-105vh) rotate(360deg) scale(1.2);
       opacity: 0;
@@ -64,12 +59,12 @@
   .card {
     position: relative;
     z-index: 10;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(8px);
     width: 100%;
-    max-width: 800px;
+    max-width: 750px;
     min-height: 520px;
-    padding: 40px 30px;
+    padding: 35px 25px;
     border-radius: 30px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(255, 107, 158, 0.25);
@@ -83,16 +78,16 @@
     display: flex;
     justify-content: space-around;
     border-bottom: 2px solid #ffe3ec;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
   }
   .nav button {
     background: none;
     border: none;
     color: #888;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
-    padding: 8px 16px;
+    padding: 8px 14px;
     cursor: pointer;
     border-radius: 20px;
     transition: all 0.3s;
@@ -104,8 +99,8 @@
 
   /* 主愛心圖示 */
   .heart-icon {
-    font-size: 75px;
-    margin-bottom: 15px;
+    font-size: 60px;
+    margin-bottom: 10px;
     animation: beat 1.2s infinite ease-in-out;
   }
   @keyframes beat {
@@ -115,14 +110,15 @@
 
   h1, h2 {
     color: #ff4f87;
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 15px;
   }
   p {
     color: #555;
-    font-size: 22px;
-    line-height: 1.8;
-    margin-bottom: 30px;
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 25px;
   }
 
   /* 按鈕 */
@@ -130,9 +126,9 @@
     background: linear-gradient(135deg, #ff6b9e, #ff4f87);
     color: white;
     border: none;
-    padding: 16px 36px;
+    padding: 14px 32px;
     border-radius: 40px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
@@ -143,126 +139,61 @@
     box-shadow: 0 8px 20px rgba(255, 79, 135, 0.4);
   }
 
-  /* 分頁切換 */
-  .page {
-    display: none;
+  /* 滑動相簿輪播樣式 */
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 320px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
   }
-  .page.active {
-    display: block;
+  .photo-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
   }
-
-  .footer-text {
-    color: #ffa1c5;
-    font-size: 14px;
-    margin-top: 20px;
+  .photo-slide.active {
+    opacity: 1;
   }
-</style>
-</head>
-<body>
-
-<!-- 滿版飄浮愛心背景 -->
-<div id="heart-bg"></div>
-
-<div class="card">
-  <!-- 頂部導覽列 -->
-  <div class="nav">
-    <button id="nav-home" class="active" onclick="showPage('home')">🏠 首頁</button>
-    <button id="nav-whisper" onclick="showPage('whisper')">💌 悄悄話</button>
-    <button id="nav-memories" onclick="showPage('memories')">📸 回憶牆</button>
-    <button id="nav-wishes" onclick="showPage('wishes')">🎁 願望清單</button>
-  </div>
-
-  <!-- 內容區域 -->
-  <div class="content">
-    <!-- 1. 首頁 -->
-    <div id="page-home" class="page active">
-      <div class="heart-icon">💗</div>
-      <h1>給韶霈</h1>
-      <p>
-        如果你看到這個頁面，<br>
-        表示妳已經開始想我了 🥳
-      </p>
-      <button class="btn" onclick="showPage('whisper')">看第一條悄悄話 ➔</button>
-    </div>
-
-    <!-- 2. 悄悄話 -->
-    <div id="page-whisper" class="page">
-      <div class="heart-icon">💌</div>
-      <h1>悄悄話</h1>
-      <p>
-        其實我也一直在想妳 💕<br>
-        無論今天過得怎麼樣，<br>
-        記得都有我在這裡陪著妳！
-      </p>
-      <button class="btn" onclick="showPage('memories')">去看我們的回憶 ➔</button>
-    </div>
-
-    <!-- 3. 回憶牆 -->
-    <div id="page-memories" class="page">
-      <div class="heart-icon">📸</div>
-      <h1>我們的回憶</h1>
-      <p>
-        每一刻跟妳在一起的時間，<br>
-        都是最珍貴的收藏！✨
-      </p>
-      <button class="btn" onclick="showPage('wishes')">前往願望清單 ➔</button>
-    </div>
-
-    <!-- 4. 願望清單 -->
-    <div id="page-wishes" class="page">
-      <div class="heart-icon">🎁</div>
-      <h1>願望清單</h1>
-      <p>
-        想跟妳一起去的每個地方，<br>
-        我們一個一個去實現！🎒
-      </p>
-      <button class="btn" onclick="showPage('home')">⬅ 回到首頁</button>
-    </div>
-  </div>
-
-  <div class="footer-text">
-    Made with ❤️ for Shao Pei
-  </div>
-</div>
-
-<script>
-  // 分頁切換功能
-  function showPage(pageName) {
-    var pages = document.querySelectorAll('.page');
-    for (var i = 0; i < pages.length; i++) {
-      pages[i].classList.remove('active');
-    }
-    
-    var navBtns = document.querySelectorAll('.nav button');
-    for (var j = 0; j < navBtns.length; j++) {
-      navBtns[j].classList.remove('active');
-    }
-
-    document.getElementById('page-' + pageName).classList.add('active');
-    document.getElementById('nav-' + pageName).classList.add('active');
+  .photo-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 完整呈現可愛圖片不裁切 */
+    background-color: #fff0f5;
   }
 
-  // 自動生成飄浮愛心背景
-  function createFloatingHearts() {
-    var bg = document.getElementById('heart-bg');
-    var heartSymbols = ['💗', '💖', '💕', '💓', '✨', '🌸'];
-
-    for (var i = 0; i < 25; i++) {
-      var heart = document.createElement('div');
-      heart.className = 'floating-heart';
-      heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-      
-      heart.style.left = Math.random() * 100 + '%';
-      heart.style.fontSize = (16 + Math.random() * 26) + 'px';
-      heart.style.animationDuration = (6 + Math.random() * 7) + 's';
-      heart.style.animationDelay = (Math.random() * 6) + 's';
-
-      bg.appendChild(heart);
-    }
+  /* 相簿左右切換按鈕 */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    color: #ff4f87;
+    font-size: 20px;
+    font-weight: bold;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    z-index: 5;
+    transition: 0.2s;
   }
-
-  window.onload = createFloatingHearts;
-</script>
-
-</body>
-</html>
+  .carousel-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-
