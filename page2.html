@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>給經典 💕 - 悄悄話</title>
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffd6e7,#fff0f5);
+  font-family:"Microsoft JhengHei",sans-serif;
+  padding:20px 0;
+  box-sizing:border-box;
+}
+.card{
+  background:white;
+  width:350px;
+  padding:30px 40px;
+  border-radius:25px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+.nav{
+  display:flex;
+  justify-content:space-around;
+  margin-bottom:20px;
+  border-bottom:2px solid #ffe3ec;
+  padding-bottom:10px;
+}
+.nav a{
+  text-decoration:none;
+  color:#888;
+  font-size:14px;
+  font-weight:bold;
+}
+.nav a.active{
+  color:#ff4f87;
+  border-bottom:2px solid #ff4f87;
+  padding-bottom:2px;
+}
+.heart{
+  font-size:60px;
+  animation:beat 1s infinite;
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
+h1{
+  color:#ff4f87;
+  margin-bottom:15px;
+}
+p{
+  color:#666;
+  line-height:1.8;
+}
+button{
+  background:#ff6b9e;
+  color:white;
+  border:none;
+  padding:12px 24px;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:16px;
+  margin-top:20px;
+  transition:0.3s;
+}
+button:hover{
+  background:#ff4f87;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="nav">
+    <a href="index.html">首頁</a>
+    <a href="page2.html" class="active">悄悄話</a>
+    <a href="page3.html">回憶牆</a>
+    <a href="page4.html">願望清單</a>
+  </div>
+
+  <div class="heart">💌</div>
+  <h1>悄悄話</h1>
+  <p>
+  其實我也一直在想妳 💕<br>
+  無論今天過得怎麼樣，<br>
+  記得都有我在這裡陪著妳！
+  </p>
+  <button onclick="location.href='page3.html'">
+    去看我們的回憶 ➔
+  </button>
+</div>
+</body>
+</html>
