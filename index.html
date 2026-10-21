@@ -18,22 +18,67 @@
     background: linear-gradient(135deg, #ffd6e7, #fff0f5);
     font-family: "Microsoft JhengHei", -apple-system, BlinkMacSystemFont, sans-serif;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
   }
-  /* 卡片放大，減少周圍空白 */
+
+  /* 飄浮愛心背景容器 */
+  #heart-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  /* 飄浮愛心動畫 */
+  .floating-heart {
+    position: absolute;
+    bottom: -50px;
+    color: rgba(255, 130, 168, 0.45);
+    user-select: none;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) rotate(0deg) scale(0.8);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.7;
+    }
+    85% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-105vh) rotate(360deg) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  /* 主卡片容器 */
   .card {
-    background: rgba(255, 255, 255, 0.95);
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
     width: 100%;
     max-width: 800px;
     min-height: 520px;
     padding: 40px 30px;
     border-radius: 30px;
     text-align: center;
-    box-shadow: 0 15px 35px rgba(255, 107, 158, 0.2);
+    box-shadow: 0 15px 35px rgba(255, 107, 158, 0.25);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  /* 導覽列選單 */
+
+  /* 頂部導覽列 */
   .nav {
     display: flex;
     justify-content: space-around;
@@ -56,7 +101,8 @@
     color: #ff4f87;
     background-color: #ffe3ec;
   }
-  /* 愛心圖示動畫 */
+
+  /* 主愛心圖示 */
   .heart-icon {
     font-size: 75px;
     margin-bottom: 15px;
@@ -66,6 +112,7 @@
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.15); }
   }
+
   h1, h2 {
     color: #ff4f87;
     font-size: 36px;
@@ -77,7 +124,8 @@
     line-height: 1.8;
     margin-bottom: 30px;
   }
-  /* 主按鈕 */
+
+  /* 按鈕 */
   .btn {
     background: linear-gradient(135deg, #ff6b9e, #ff4f87);
     color: white;
@@ -94,13 +142,15 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 79, 135, 0.4);
   }
-  /* 分頁隱藏控制 */
+
+  /* 分頁切換 */
   .page {
     display: none;
   }
   .page.active {
     display: block;
   }
+
   .footer-text {
     color: #ffa1c5;
     font-size: 14px;
@@ -109,6 +159,9 @@
 </style>
 </head>
 <body>
+
+<!-- 滿版飄浮愛心背景 -->
+<div id="heart-bg"></div>
 
 <div class="card">
   <!-- 頂部導覽列 -->
@@ -173,23 +226,42 @@
 </div>
 
 <script>
+  // 分頁切換功能
   function showPage(pageName) {
-    // 隱藏所有分頁
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) {
       pages[i].classList.remove('active');
     }
     
-    // 取消所有導覽列按鈕高亮
     var navBtns = document.querySelectorAll('.nav button');
     for (var j = 0; j < navBtns.length; j++) {
       navBtns[j].classList.remove('active');
     }
 
-    // 顯示目標頁面與高亮選單
     document.getElementById('page-' + pageName).classList.add('active');
     document.getElementById('nav-' + pageName).classList.add('active');
   }
+
+  // 自動生成飄浮愛心背景
+  function createFloatingHearts() {
+    var bg = document.getElementById('heart-bg');
+    var heartSymbols = ['💗', '💖', '💕', '💓', '✨', '🌸'];
+
+    for (var i = 0; i < 25; i++) {
+      var heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.fontSize = (16 + Math.random() * 26) + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 7) + 's';
+      heart.style.animationDelay = (Math.random() * 6) + 's';
+
+      bg.appendChild(heart);
+    }
+  }
+
+  window.onload = createFloatingHearts;
 </script>
 
 </body>
