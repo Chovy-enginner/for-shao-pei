@@ -3,73 +3,159 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>給經典 💕 - 首頁</title>
+<title>給經典 💕</title>
 <style>
-body{
-  margin:0;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ffd6e7,#fff0f5);
-  font-family:"Microsoft JhengHei",sans-serif;
-  padding:20px 0;
-  box-sizing:border-box;
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffd6e7, #fff0f5);
+  font-family: "Microsoft JhengHei", sans-serif;
+  padding: 20px 0;
+  box-sizing: border-box;
 }
-.card{
-  background:white;
-  width:350px;
-  padding:30px 40px;
-  border-radius:25px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+/* 外層卡片容器 */
+.card {
+  background: white;
+  width: 350px;
+  padding: 35px 30px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
-.heart{
-  font-size:60px;
-  animation:beat 1s infinite;
+
+/* 愛心動畫 */
+.heart {
+  font-size: 60px;
+  animation: beat 1s infinite;
+  margin-bottom: 10px;
 }
-@keyframes beat{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.15);}
-  100%{transform:scale(1);}
+@keyframes beat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
-h1{
-  color:#ff4f87;
-  margin-bottom:15px;
+
+h1 {
+  color: #ff4f87;
+  margin-bottom: 15px;
 }
-p{
-  color:#666;
-  line-height:1.8;
+p {
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 20px;
 }
-button{
-  background:#ff6b9e;
-  color:white;
-  border:none;
-  padding:12px 24px;
-  border-radius:30px;
-  cursor:pointer;
-  font-size:16px;
-  margin-top:20px;
-  transition:0.3s;
+
+/* 頂部選單導覽列 */
+.nav {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #ffe3ec;
+  padding-bottom: 10px;
 }
-button:hover{
-  background:#ff4f87;
+.nav button {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 8px;
+  cursor: pointer;
+  margin: 0;
+  width: auto;
+  border-radius: 0;
+  transition: color 0.3s;
+}
+.nav button:hover {
+  background: none;
+  color: #ff4f87;
+}
+.nav button.active {
+  color: #ff4f87;
+  border-bottom: 2px solid #ff4f87;
+}
+
+/* 一般按鈕樣式 */
+.btn {
+  background: #ff6b9e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.btn:hover {
+  background: #ff4f87;
+}
+
+/* 控制分頁顯示/隱藏 */
+.page {
+  display: none; /* 預設隱藏所有分頁 */
+}
+.page.active {
+  display: block; /* 只顯示有 active 標籤的分頁 */
 }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="heart">💗</div>
-  <h1>給經典</h1>
-  <p>
-  如果你看到這個頁面，<br>
-  表示妳已經開始想我了 🥳
-  </p>
 
-  <!-- 點擊按鈕，在新視窗/新頁籤開啟 page2.html -->
-  <button onclick="window.open('page2.html', '_blank')">
-    前往悄悄話 ➔
-  </button>
-</div>
-</body>
-</html>
+<div class="card">
+  <!-- 頂部導覽列：點擊切換分頁 -->
+  <div class="nav">
+    <button class="nav-btn active" onclick="switchPage('home')">首頁</button>
+    <button class="nav-btn" onclick="switchPage('page1')">悄悄話</button>
+    <button class="nav-btn" onclick="switchPage('page2')">回憶牆</button>
+    <button class="nav-btn" onclick="switchPage('page3')">願望清單</button>
+  </div>
+
+  <!-- 分頁 0：首頁 -->
+  <div id="home" class="page active">
+    <div class="heart">💗</div>
+    <h1>給經典</h1>
+    <p>
+      如果你看到這個頁面，<br>
+      表示妳已經開始想我了 🥳
+    </p>
+    <button class="btn" onclick="switchPage('page1')">看第一條悄悄話 ➔</button>
+  </div>
+
+  <!-- 分頁 1：悄悄話 -->
+  <div id="page1" class="page">
+    <div class="heart">💌</div>
+    <h1>悄悄話</h1>
+    <p>
+      其實我也一直在想妳 💕<br>
+      無論今天過得怎麼樣，<br>
+      記得都有我在這裡陪著妳！
+    </p>
+    <button class="btn" onclick="switchPage('page2')">去看我們的回憶 ➔</button>
+  </div>
+
+  <!-- 分頁 2：回憶牆 -->
+  <div id="page2" class="page">
+    <div class="heart">📸</div>
+    <h1>我們的回憶</h1>
+    <p>
+      每一刻跟你在一起的時間，<br>
+      都是最珍貴的收藏！✨
+    </p>
+    <button class="btn" onclick="switchPage('page3')">前往願望清單 ➔</button>
+  </div>
+
+  <!-- 分頁 3：願望清單 -->
+  <div id="page3" class="page">
+    <div class="heart">🎁</div>
+    <h1>願望清單</h1>
+    <p>
+      想跟你一起去的每個地方，<br>
+      我們一個一個去實現！🎒
+    </p>
+    <button class="btn" onclick="switchPage('home')">⬅
