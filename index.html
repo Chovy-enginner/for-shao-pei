@@ -60,11 +60,11 @@
     position: relative;
     z-index: 10;
     background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     width: 100%;
-    max-width: 750px;
-    min-height: 520px;
-    padding: 35px 25px;
+    max-width: 780px;
+    min-height: 560px;
+    padding: 30px 25px;
     border-radius: 30px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(255, 107, 158, 0.25);
@@ -76,31 +76,39 @@
   /* 頂部導覽列 */
   .nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
     border-bottom: 2px solid #ffe3ec;
     padding-bottom: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   .nav button {
-    background: none;
+    background: rgba(255, 227, 236, 0.4);
     border: none;
-    color: #888;
-    font-size: 16px;
+    color: #777;
+    font-size: 15px;
     font-weight: bold;
-    padding: 8px 14px;
+    padding: 8px 16px;
     cursor: pointer;
     border-radius: 20px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
   }
-  .nav button.active {
+  .nav button:hover {
     color: #ff4f87;
     background-color: #ffe3ec;
+  }
+  .nav button.active {
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b9e, #ff4f87);
+    box-shadow: 0 4px 10px rgba(255, 79, 135, 0.3);
   }
 
   /* 主愛心圖示 */
   .heart-icon {
-    font-size: 60px;
+    font-size: 55px;
     margin-bottom: 10px;
+    display: inline-block;
     animation: beat 1.2s infinite ease-in-out;
   }
   @keyframes beat {
@@ -110,15 +118,15 @@
 
   h1, h2 {
     color: #ff4f87;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
   p {
     color: #555;
-    font-size: 19px;
+    font-size: 17px;
     line-height: 1.7;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 
   /* 按鈕 */
@@ -126,108 +134,53 @@
     background: linear-gradient(135deg, #ff6b9e, #ff4f87);
     color: white;
     border: none;
-    padding: 14px 32px;
+    padding: 12px 28px;
     border-radius: 40px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
     box-shadow: 0 5px 15px rgba(255, 79, 135, 0.3);
+    margin: 10px auto 0;
+    display: inline-block;
   }
   .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 79, 135, 0.4);
   }
 
-  /* 滑動相簿輪播樣式 */
-  .carousel-container {
+  /* 影片播放器容器 */
+  .video-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
-    height: 320px;
-    margin: 0 auto 20px;
+    max-width: 600px;
+    margin: 0 auto 15px;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 25px rgba(255, 107, 158, 0.25);
+    background-color: #000;
   }
-  .photo-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .video-container video {
     width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fff;
-  }
-  .photo-slide.active {
-    opacity: 1;
-  }
-  .photo-slide img {
-    width: 100%;
-    height: 100%;
+    max-height: 380px;
+    display: block;
+    border-radius: 20px;
+    outline: none;
     object-fit: contain;
-    background-color: #fff0f5;
-  }
-
-  /* 相簿左右切換按鈕 */
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    color: #ff4f87;
-    font-size: 20px;
-    font-weight: bold;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    z-index: 5;
-    transition: 0.2s;
-  }
-  .carousel-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.1);
-  }
-  .carousel-btn.prev { left: 10px; }
-  .carousel-btn.next { right: 10px; }
-
-  /* 相簿指示點 */
-  .dots-container {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 5;
-  }
-  .dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .dot.active {
-    background: #ff4f87;
-    width: 20px;
-    border-radius: 10px;
   }
 
   /* 分頁切換 */
   .page {
     display: none;
+    animation: fadeIn 0.4s ease-in-out;
   }
   .page.active {
     display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   .footer-text {
@@ -243,12 +196,13 @@
 <div id="heart-bg"></div>
 
 <div class="card">
-  <!-- 頂部導覽列 -->
+  <!-- 頂部導覽列 (五個分頁) -->
   <div class="nav">
     <button id="nav-home" class="active" onclick="showPage('home')">🏠 首頁</button>
-    <button id="nav-whisper" onclick="showPage('whisper')">💌 悄悄話</button>
-    <button id="nav-memories" onclick="showPage('memories')">📸 回憶牆</button>
-    <button id="nav-wishes" onclick="showPage('wishes')">🎁 願望清單</button>
+    <button id="nav-yiyu" onclick="showPage('yiyu')">✨ 一隅</button>
+    <button id="nav-fantuan" onclick="showPage('fantuan')">🍙 飯糰</button>
+    <button id="nav-baozi" onclick="showPage('baozi')">🥟 包子</button>
+    <button id="nav-jimao" onclick="showPage('jimao')">🪶 雞毛</button>
   </div>
 
   <!-- 內容區域 -->
@@ -256,55 +210,64 @@
     <!-- 1. 首頁 -->
     <div id="page-home" class="page active">
       <div class="heart-icon">💗</div>
-      <h1>給韶霈</h1>
+      <h1>給韶霈 💕</h1>
       <p>
         如果你看到這個頁面，<br>
-        表示妳已經開始想我了 🥳
+        表示妳已經開始想我了 🥳<br>
+        點擊上方分頁看看為妳準備的專屬影片吧！
       </p>
-      <button class="btn" onclick="showPage('whisper')">看第一條悄悄話 ➔</button>
+      <button class="btn" onclick="showPage('yiyu')">前往第一頁：一隅 ➔</button>
     </div>
 
-    <!-- 2. 悄悄話 -->
-    <div id="page-whisper" class="page">
-      <div class="heart-icon">💌</div>
-      <h1>悄悄話</h1>
-      <p>
-        其實我也一直在想妳 💕<br>
-        無論今天過得怎麼樣，<br>
-        記得都有我在這裡陪著妳！
-      </p>
-      <button class="btn" onclick="showPage('memories')">去看我們的回憶 ➔</button>
-    </div>
-
-    <!-- 3. 回憶牆 -->
-    <div id="page-memories" class="page">
-      <h2>我們的回憶牆 📸</h2>
-      
-      <!-- 相簿輪播區 -->
-      <div class="carousel-container">
-        <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
-        <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
-        
-        <div id="photo-list">
-          <div class="photo-slide active"><img src="線條小狗.png" alt="線條小狗"></div>
-        </div>
-
-        <div class="dots-container" id="dots-list">
-          <span class="dot active" onclick="setSlide(0)"></span>
-        </div>
+    <!-- 2. 一隅 -->
+    <div id="page-yiyu" class="page">
+      <h2>✨ 一隅</h2>
+      <div class="video-container">
+        <video controls playsinline preload="metadata">
+          <source src="1.mp4" type="video/mp4">
+          您的瀏覽器不支援影片播放。
+        </video>
       </div>
-
-      <button class="btn" onclick="showPage('wishes')">前往願望清單 ➔</button>
+      <p>無論在世界的哪個角落，妳永遠是我最安心的一隅 💕</p>
+      <button class="btn" onclick="showPage('fantuan')">下一頁：飯糰 ➔</button>
     </div>
 
-    <!-- 4. 願望清單 -->
-    <div id="page-wishes" class="page">
-      <div class="heart-icon">🎁</div>
-      <h1>願望清單</h1>
-      <p>
-        想跟妳一起去的每個地方，<br>
-        我們一個一個去實現！🎒
-      </p>
+    <!-- 3. 飯糰 -->
+    <div id="page-fantuan" class="page">
+      <h2>🍙 飯糰</h2>
+      <div class="video-container">
+        <video controls playsinline preload="metadata">
+          <source src="2.mp4" type="video/mp4">
+          您的瀏覽器不支援影片播放。
+        </video>
+      </div>
+      <p>像飯糰一樣緊緊抱在一起，溫暖又甜蜜 🍣</p>
+      <button class="btn" onclick="showPage('baozi')">下一頁：包子 ➔</button>
+    </div>
+
+    <!-- 4. 包子 -->
+    <div id="page-baozi" class="page">
+      <h2>🥟 包子</h2>
+      <div class="video-container">
+        <video controls playsinline preload="metadata">
+          <source src="3.mp4" type="video/mp4">
+          您的瀏覽器不支援影片播放。
+        </video>
+      </div>
+      <p>圓圓軟軟的包子，裝滿了我對妳的喜歡 🥟💓</p>
+      <button class="btn" onclick="showPage('jimao')">下一頁：雞毛 ➔</button>
+    </div>
+
+    <!-- 5. 雞毛 -->
+    <div id="page-jimao" class="page">
+      <h2>🪶 雞毛</h2>
+      <div class="video-container">
+        <video controls playsinline preload="metadata">
+          <source src="4.mp4" type="video/mp4">
+          您的瀏覽器不支援影片播放。
+        </video>
+      </div>
+      <p>即使是生活中雞毛蒜皮的小事，只要有妳都很幸福 🌸</p>
       <button class="btn" onclick="showPage('home')">⬅ 回到首頁</button>
     </div>
   </div>
@@ -315,7 +278,7 @@
 </div>
 
 <script>
-  // 分頁切換功能
+  // 分頁切換功能（切換時會自動暫停其他頁面播放中的影片）
   function showPage(pageName) {
     var pages = document.querySelectorAll('.page');
     for (var i = 0; i < pages.length; i++) {
@@ -326,6 +289,12 @@
     for (var j = 0; j < navBtns.length; j++) {
       navBtns[j].classList.remove('active');
     }
+
+    // 暫停所有影片
+    var videos = document.querySelectorAll('video');
+    videos.forEach(function(video) {
+      video.pause();
+    });
 
     var targetPage = document.getElementById('page-' + pageName);
     var targetNav = document.getElementById('nav-' + pageName);
@@ -352,41 +321,6 @@
 
       bg.appendChild(heart);
     }
-  }
-
-  // 相簿切換 JavaScript（傳統穩健寫法）
-  var currentSlide = 0;
-  function updateSlides() {
-    var slides = document.querySelectorAll('.photo-slide');
-    var dots = document.querySelectorAll('.dot');
-    
-    for (var i = 0; i < slides.length; i++) {
-      if (i === currentSlide) {
-        slides[i].classList.add('active');
-      } else {
-        slides[i].classList.remove('active');
-      }
-    }
-
-    for (var j = 0; j < dots.length; j++) {
-      if (j === currentSlide) {
-        dots[j].classList.add('active');
-      } else {
-        dots[j].classList.remove('active');
-      }
-    }
-  }
-
-  function changeSlide(direction) {
-    var slides = document.querySelectorAll('.photo-slide');
-    if (slides.length === 0) return;
-    currentSlide = (currentSlide + direction + slides.length) % slides.length;
-    updateSlides();
-  }
-
-  function setSlide(index) {
-    currentSlide = index;
-    updateSlides();
   }
 
   window.onload = function() {
